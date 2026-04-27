@@ -189,26 +189,35 @@
     <button onclick="openLetter()">Read this 💌</button>
   </div>
 
+  <!-- 🎵 MUSIC -->
+  <div class="section">
+    <button onclick="toggleMusic()">🔊 Music On/Off</button>
+    <p style="font-size: 12px; margin-top: 5px;">Close to You - Gracie Abrams</p>
+  </div>
+
 </div>
 
 <!-- 💌 LETTER -->
 <div id="letterPage">
   <h2>My Love 💖</h2>
-  <p>Hey my fav headache my love, my sunshine wishing you happiest birthday, I want u to know that I'm always here for you by your side and you don't have to worry about anything I just want you to know that I love you so much maybe I'm not good at expressing sometimes but I do and always love yourself and don't forget to take care of yourself bcz I'm not there for taking care for u naa okayyyy mwaahhh 🌷</p>
+  <p>Hey my fav headache my love, my sunshine wishing you happiest birthday, I want u to know that I'm always here for you by your side and you don't have to worry about anything I just want you [...]
 
   <button onclick="closeLetter()">Close</button>
 </div>
 
 <!-- 🎵 -->
-<audio autoplay loop>
-  <source src="song.mp3" type="audio/mpeg">
+<audio id="bgMusic" autoplay loop>
+  <source src="close-to-you-gracie-abrams.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
+  const audio = document.getElementById("bgMusic");
+
   function unlock() {
     document.getElementById("lock").style.display = "none";
     document.getElementById("main").style.display = "block";
+    audio.play();
   }
 
   function openLetter() {
@@ -217,6 +226,14 @@
 
   function closeLetter() {
     document.getElementById("letterPage").style.display = "none";
+  }
+
+  function toggleMusic() {
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
   }
 
   /* ⏳ COUNTDOWN (UPDATED TO MAY 25, 2026) */
