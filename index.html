@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For My Favorite Person 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: black;
+      color: white;
+      text-align: center;
+    }
+
+    /* 🔒 LOCK */
+    #lock {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(#ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    #main {
+      display: none;
+      background: linear-gradient(#ff9a9e, #fad0c4);
+      padding-bottom: 50px;
+    }
+
+    .section {
+      padding: 20px;
+    }
+
+    img {
+      width: 200px;
+      border-radius: 20px;
+      margin: 10px;
+      box-shadow: 0 0 15px white;
+    }
+
+    button {
+      background: white;
+      color: #ff4d6d;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    /* 💬 CHAT */
+    .chat {
+      max-width: 300px;
+      margin: auto;
+      background: white;
+      color: black;
+      padding: 10px;
+      border-radius: 15px;
+    }
+
+    .msg {
+      padding: 8px;
+      margin: 5px;
+      border-radius: 10px;
+      max-width: 80%;
+    }
+
+    .me {
+      background: #ff4d6d;
+      color: white;
+      margin-left: auto;
+    }
+
+    .her {
+      background: #eee;
+      margin-right: auto;
+    }
+
+    /* 💌 LETTER */
+    #letterPage {
+      display: none;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      color: black;
+      padding: 20px;
+      overflow-y: auto;
+      z-index: 11;
+    }
+
+    #letterPage h2 {
+      color: #ff4d6d;
+      font-size: 28px;
+    }
+
+    #letterPage p {
+      line-height: 1.8;
+      font-size: 16px;
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: left;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    /* 💕 HEARTS */
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      animation: floatUp 5s linear infinite;
+    }
+
+    @keyframes floatUp {
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- 🔒 LOCK -->
+<div id="lock" onclick="unlock()">
+  <h1>Tap to open 💖</h1>
+  <p>I made something for you 😌</p>
+</div>
+
+<!-- 💖 MAIN -->
+<div id="main">
+
+  <h1>Happy Birthday 💖🎂</h1>
+
+  <!-- ⏳ COUNTDOWN -->
+  <div class="section">
+    <h2 id="countdown"></h2>
+  </div>
+
+  <!-- 📸 -->
+  <div class="section">
+    <img src="flowers.jpg">
+    <img src="kiss-card.jpg">
+  </div>
+
+  <div class="section">
+    <img src="message1.jpg">
+    <img src="message2.jpg">
+  </div>
+
+  <div class="section">
+    <img src="cat.jpg">
+  </div>
+
+  <div class="section">
+    <img src="hug1.jpg">
+    <img src="hug2.jpg">
+    <img src="hands.jpg">
+  </div>
+
+  <div class="section">
+    <img src="shinchan.jpg">
+  </div>
+
+  <!-- 💬 CHAT -->
+  <div class="section">
+    <h2>Us 😂💖</h2>
+    <div class="chat">
+      <div class="msg me">Hey cutie 😏</div>
+      <div class="msg her">What 😒</div>
+      <div class="msg me">I love you</div>
+      <div class="msg her">I know 😂</div>
+      <div class="msg me">Annoying but cute</div>
+      <div class="msg her">YOU 😤</div>
+    </div>
+  </div>
+
+  <!-- 💌 -->
+  <div class="section">
+    <button onclick="openLetter()">Read this 💌</button>
+  </div>
+
+</div>
+
+<!-- 💌 LETTER -->
+<div id="letterPage">
+  <h2>My Love 💖</h2>
+  <p>Hey my fav headache my love, my sunshine wishing you happiest birthday, I want u to know that I'm always here for you by your side and you don't have to worry about anything I just want you to know that I love you so much maybe I'm not good at expressing sometimes but I do and always love yourself and don't forget to take care of yourself bcz I'm not there for taking care for u naa okayyyy mwaahhh 🌷</p>
+
+  <button onclick="closeLetter()">Close</button>
+</div>
+
+<!-- 🎵 -->
+<audio autoplay loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+  function unlock() {
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("main").style.display = "block";
+  }
+
+  function openLetter() {
+    document.getElementById("letterPage").style.display = "block";
+  }
+
+  function closeLetter() {
+    document.getElementById("letterPage").style.display = "none";
+  }
+
+  /* ⏳ COUNTDOWN (UPDATED TO MAY 25, 2026) */
+  const birthday = new Date("2026-05-25");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = birthday - now;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const minutes = Math.floor((diff / (1000*60)) % 60);
+
+    document.getElementById("countdown").innerText =
+      days + " days " + hours + " hrs " + minutes + " mins until your special day 💖";
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* 💕 HEARTS */
+  function createHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "💖";
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+  }
+
+  setInterval(createHeart, 300);
+
+</script>
+
+</body>
+</html>
